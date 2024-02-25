@@ -1,0 +1,152 @@
+﻿@model UserModel
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Create New User</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">User</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <form asp-controller="User" asp-action="EditUser">
+                        <div class="card-body">
+                            <h4 class="card-title">Task Info</h4>
+                        </div>
+                        <hr>
+                        <input type="hidden" asp-for="UserId" class="form-control">
+                        <div class="form-body">
+                            <div class="card-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Username</label>
+                                            <input type="text" asp-for="UserName" class="form-control">
+                                            <span asp-validation-for="UserName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Password</label>
+                                            <input type="text" asp-for="UserPassword" class="form-control form-control-danger">
+                                            <span asp-validation-for="UserPassword" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group has-success">
+                                            <label class="control-label">User Level</label>
+                                            <select asp-for="UserLevel" class="form-control custom-select">
+                                                <option value="Admin">Admin</option>
+                                                <option value="Staff">Staff</option>
+                                            </select>
+                                            <span asp-validation-for="UserLevel" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">User Email</label>
+                                            <input type="email" asp-for="UserEmail" class="form-control">
+                                            <span asp-validation-for="UserEmail" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Active Status</label>
+                                            <select class="form-control custom-select" asp-for="UserActive" data-placeholder="Choose a Category" tabindex="1">
+                                                <option value="true">Enable</option>
+                                                <option value="false">Disable</option>
+                                            </select>
+                                            <span asp-validation-for="UserActive" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+
+                            </div>
+                            <hr>
+
+                            <div class="form-actions">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                    <button type="button" class="btn btn-dark">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Nice admin. Designed and Developed by
+        <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->

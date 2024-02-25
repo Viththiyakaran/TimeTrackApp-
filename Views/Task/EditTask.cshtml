@@ -1,0 +1,157 @@
+﻿@model TaskModel
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Update Task</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Task</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <form asp-controller="Task" asp-action="EditTask">
+                        <div class="card-body">
+                            <h4 class="card-title">Task Info</h4>
+                        </div>
+                        <hr>
+                        <input type="hidden" asp-for="TaskId" class="form-control form-control-danger">
+                        <div class="form-body">
+                            <div class="card-body">
+                                <div class="row p-t-20">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Subject</label>
+                                            <input type="text" asp-for="TaskSubject" class="form-control">
+                                            <span asp-validation-for="TaskSubject" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Description</label>
+                                            <input type="text" asp-for="TaskDescription" class="form-control form-control-danger">
+                                            <span asp-validation-for="TaskDescription" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group has-success">
+                                            <label class="control-label">Status</label>
+                                            <select asp-for="TaskStatus" class="form-control custom-select">
+                                                <option value="Do">Do</option>
+                                                <option value="Doing">Doing</option>
+                                                <option value="Done">Done</option>
+                                                <option value="BackLog">BackLog</option>
+                                            </select>
+                                            <span asp-validation-for="TaskStatus" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Eastimate Date</label>
+                                            <input type="date" asp-for="TaskLastModifiedDateAndTime" class="form-control">
+                                            <span asp-validation-for="TaskLastModifiedDateAndTime" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Category</label>
+                                            <select asp-for="TaskAssignedUserId" class="form-control custom-select" data-placeholder="Choose a User" tabindex="1">
+                                                <option value="">Select User</option>
+                                                @foreach (var user in (SelectList)ViewBag.Users)
+                                                {
+                                                    <option value="@user.Value">@user.Text</option>
+                                                }
+                                            </select>
+                                            <span asp-validation-for="TaskAssignedUserId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+
+                            </div>
+                            <hr>
+
+                            <div class="form-actions">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Update</button>
+                                    <button type="button" class="btn btn-dark">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Row -->
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Nice admin. Designed and Developed by
+        <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->

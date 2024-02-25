@@ -1,0 +1,150 @@
+﻿@model List<TaskModel>
+
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Taskboard</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Taskboard</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">To Do</h4>
+
+                        
+                        <ul class="list-group">
+                            
+                            @foreach (var task in Model)
+                            {
+                                @if(task.TaskStatus == "Do" )
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    @task.TaskSubject
+                                        <form method="get" asp-controller="Task" asp-action="EditTask" asp-route-id ="@task.TaskId">
+                                            <button type="submit" class="btn btn-primary">Action</button>
+                                        </form>
+                                    </li>
+                                }
+                                
+                            }
+
+
+                           
+                            <!-- Add more tasks as needed -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Doing</h4>
+                        <ul class="list-group">
+                            @foreach (var task in Model)
+                            {
+                                @if (task.TaskStatus == "Doing")
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        @task.TaskSubject
+                                        <form method="get" asp-controller="Task" asp-action="EditTask" asp-route-id="@task.TaskId">
+                                            <button type="submit" class="btn btn-primary">Action</button>
+                                        </form>
+                                    </li>
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Done</h4>
+                        <ul class="list-group">
+                            @foreach (var task in Model)
+                            {
+                                @if (task.TaskStatus == "Done")
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        @task.TaskSubject
+                                        <form method="get" asp-controller="Task" asp-action="EditTask" asp-route-id="@task.TaskId">
+                                            <button type="submit" class="btn btn-primary">Action</button>
+                                        </form>
+                                    </li>
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Backlog</h4>
+                        <ul class="list-group">
+                            @foreach (var task in Model)
+                            {
+                                @if (task.TaskStatus == "BackLog")
+                                {
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        @task.TaskSubject
+                                        <form method="get" asp-controller="Task" asp-action="EditTask" asp-route-id="@task.TaskId">
+                                            <button type="submit" class="btn btn-primary">Action</button>
+                                        </form>
+                                    </li>
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer text-center">
+        All Rights Reserved by Nice admin. Designed and Developed by
+        <a href="https://wrappixel.com">WrapPixel</a>.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
