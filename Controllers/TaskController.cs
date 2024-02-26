@@ -21,9 +21,17 @@ namespace TimeTrackApp.Controllers
             return View();
         }
 
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
-            return View();
+
+            var tasks = await _dbConntection.Task
+        .Where(u => u.TaskAdminApprove == true)
+        .ToListAsync();
+
+
+
+
+            return View(tasks);
         }
 
         public async Task<IActionResult> StaffDashboard()
@@ -32,7 +40,7 @@ namespace TimeTrackApp.Controllers
             var userId = HttpContext.Session.GetInt32("UserId");
 
             var tasks = await _dbConntection.Task
-        .Where(u => u.TaskAssignedUserId == userId)
+        .Where(u => u.TaskAssignedUserId == userId && u.TaskAdminApprove == true)
         .ToListAsync();
 
 
@@ -109,8 +117,49 @@ namespace TimeTrackApp.Controllers
                 var userId = HttpContext.Session.GetInt32("UserId");
 
                 var tasks = await _dbConntection.Task
-                    .Where(u => u.TaskAssignedUserId == userId)
-                    .ToListAsync();
+       .Where(u => u.TaskAssignedUserId == userId && u.TaskAdminApprove == true)
+       .ToListAsync();
+
+
+                // Create a StringBuilder to build the text content
+                var textContent = new StringBuilder();
+
+                // Headers
+                textContent.AppendLine("Task Subject\tTask Created Date\tTask Last Modified Date");
+
+                // Data
+                foreach (var task in tasks)
+                {
+                    textContent.AppendLine($"{task.TaskSubject}\t{task.TaskCreatedDateAndTime:yyyy-MM-dd HH:mm:ss}\t{task.TaskLastModifiedDateAndTime:yyyy-MM-dd HH:mm:ss}");
+                }
+
+                // Save the text content to a file
+                var fileName = "Tasks_Report.txt";
+                var filePath = $@"D:\{fileName}"; // Change the path as needed
+                await System.IO.File.WriteAllTextAsync(filePath, textContent.ToString());
+
+                // Download the file
+                return RedirectToAction("AllTask");
+
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions (e.g., log the error)
+                return BadRequest($"Error: {ex.Message}");
+            }
+        }
+
+
+        public async Task<IActionResult> AdminExport()
+        {
+            try
+            {
+
+
+                var tasks = await _dbConntection.Task
+       .Where(u => u.TaskAdminApprove == true)
+       .ToListAsync();
+
 
                 // Create a StringBuilder to build the text content
                 var textContent = new StringBuilder();
@@ -146,7 +195,20 @@ namespace TimeTrackApp.Controllers
             var userId = HttpContext.Session.GetInt32("UserId");
 
             var tasks = await _dbConntection.Task
-        .Where(u => u.TaskAssignedUserId == userId)
+        .Where(u => u.TaskAssignedUserId == userId && u.TaskAdminApprove == true && u.TaskStatus == "Done")
+        .ToListAsync();
+
+
+
+
+            return View(tasks);
+        }
+
+
+        public async Task<IActionResult> AdminReport()
+        {
+            var tasks = await _dbConntection.Task
+        .Where(u => u.TaskAdminApprove == true && u.TaskStatus == "Done")
         .ToListAsync();
 
 
